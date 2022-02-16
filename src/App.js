@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Home from "./components/Home";
+import { Route, Routes } from "react-router-dom";
+import Nav from "./components/Nav";
+import Recipes from "./components/Recipes/Recipes";
+import CatgDetail from "./components/Catg/CatgDetail";
+import CategoryList from "./components/Catg/CategoryList";
+import IngList from "./components/Ingredients/IngList";
+import Favorites from "./components/Favorites";
+import WishList from "./components/WishList";
+import RecipesDetail from "./components/Recipes/RecipesDetail";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/categories" element={<CategoryList />} />
+        <Route path="/categories/:slug" element={<CatgDetail />} />
+        <Route path="/recipes" element={<Recipes />} />
+        <Route path="/recipes/:slug" element={<RecipesDetail />} />
+        <Route path="/ingredients" element={<IngList />} />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/wishlist" element={<WishList />} />
+      </Routes>
     </div>
   );
 }
