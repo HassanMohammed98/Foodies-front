@@ -2,70 +2,79 @@ import { makeAutoObservable } from "mobx";
 import categories from "../Data/categories";
 import ingredients from "../Data/ingredients";
 import recipes from "../Data/recipes";
+import instance from "./instance";
 
 class Store {
-  catgList = categories;
-  recipeList = recipes;
-  ingredientList = ingredients;
+  catgList = [];
+  recipeList = [];
+  ingredientList = [];
   constructor() {
     makeAutoObservable(this);
   }
-  addCatg = (catg) => {
-    let newID;
-    if (this.catgList.length === 0) {
-      newID = 1;
-    } else {
-      newID = this.catgList[this.catgList.length - 1].id + 1;
+  addCatg = async (catg) => {
+    try {
+      // const formData = new FormData();
+      // for (const key in catg) {
+      //   formData.append(key, catg[key]);
+      // }
+      const response = await instance.post("/categories", catg);
+      this.catgList.push(response.data);
+    } catch (error) {
+      console.log("Store -> addCatg -> error", error);
     }
-    this.catgList = [
-      ...this.catgList,
-      {
-        id: newID,
-        name: catg.name,
-        slug: catg.name.split(" ").join("-"),
-        image: catg.image,
-        recipes: [],
-      },
-    ];
   };
-  addRecipe = (recipe) => {
-    let newID;
-    if (this.recipeList.length === 0) {
-      newID = 1;
-    } else {
-      newID = this.recipeList[this.recipeList.length - 1].id + 1;
+  fetchCatg = async () => {
+    try {
+      const response = await instance.get("/categories");
+      this.catgList = response.data;
+    } catch (error) {
+      console.log("Store -> fetchCatg -> error", error);
     }
-    this.recipeList = [
-      ...this.recipeList,
-      {
-        id: newID,
-        name: recipe.name,
-        slug: recipe.name.split(" ").join("-"),
-        image: recipe.image,
-        ingredients: [],
-        category: recipe.category,
-      },
-    ];
   };
-  addIng = (ingredient) => {
-    let newID;
-    if (this.ingredientList.length === 0) {
-      newID = 1;
-    } else {
-      newID = this.ingredientList[this.ingredientList.length - 1].id + 1;
+  addRecipe = async (recipe) => {
+    try {
+      // const formData = new FormData();
+      // for (const key in catg) {
+      //   formData.append(key, catg[key]);
+      // }
+      const response = await instance.post("/recipes", recipe);
+      this.recipeList.push(response.data);
+    } catch (error) {
+      console.log("Store -> addRecipe -> error", error);
     }
-    this.ingredientList = [
-      ...this.ingredientList,
-      {
-        id: newID,
-        name: ingredient.name,
-        slug: ingredient.name.split(" ").join("-"),
-        image: ingredient.image,
-        recipes: [],
-      },
-    ];
+  };
+  fetchRecipe = async () => {
+    try {
+      const response = await instance.get("/recipes");
+      this.recipeList = response.data;
+    } catch (error) {
+      console.log("Store -> fetchRecipe -> error", error);
+    }
+  };
+  addIng = async (ingredient) => {
+    try {
+      // const formData = new FormData();
+      // for (const key in catg) {
+      //   formData.append(key, catg[key]);
+      // }
+      const response = await instance.post("/ingrediants", ingredient);
+      this.ingredientList.push(response.data);
+    } catch (error) {
+      console.log("Store -> addIngredient -> error", error);
+    }
+  };
+  fetchIng = async () => {
+    try {
+      const response = await instance.get("/ingrediants");
+      this.ingredientList = response.data;
+    } catch (error) {
+      console.log("Store -> fetchIngredient -> error", error);
+    }
   };
 }
 
 const store = new Store();
+store.fetchCatg();
+store.fetchIng();
+store.fetchRecipe();
 export default store;
