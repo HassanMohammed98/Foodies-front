@@ -31,7 +31,7 @@ const categories = [
     id: 5,
     name: "Desserts",
     slug: "Desserts",
-    image: "./images/dinner.jpg",
+    image: "./images/dessert.jpg",
     recipes: [],
   },
   {

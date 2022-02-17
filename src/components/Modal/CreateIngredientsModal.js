@@ -17,7 +17,7 @@ const CreateIngredientsModal = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     handleClose();
-    store.addCatg(dataEntered);
+    store.addIng(dataEntered);
     setDataEntered({
       name: "",
       image: "",
