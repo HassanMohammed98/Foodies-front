@@ -3,7 +3,10 @@ import { NavLink } from "react-router-dom";
 
 function Nav() {
   return (
-    <nav className="navbar navbar-dark bg-primary sticky-top" id="sideNav">
+    <nav
+      className="navbar navbar-dark bg-primary sticky-top nav-layout"
+      id="sideNav"
+    >
       <div className="nav-logo-title">
         <NavLink className="test" to="/">
           Foodies

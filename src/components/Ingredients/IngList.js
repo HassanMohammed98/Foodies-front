@@ -7,7 +7,7 @@ import CreateIngredientsModal from "../Modal/CreateIngredientsModal";
 const IngList = () => {
   const ingDisplayed = store.ingredientList.map((ing) => (
     <div className="margin-list">
-      <IngDisp key={ing.id} ingredient={ing} />
+      <IngDisp key={ing._id} ingredient={ing} />
     </div>
   ));
   return (

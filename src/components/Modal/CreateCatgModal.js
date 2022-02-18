@@ -14,6 +14,11 @@ const CreateCatgModal = () => {
   const handleChange = (event) => {
     setDataEntered({ ...dataEntered, [event.target.name]: event.target.value });
   };
+  const handleImage = (event) =>
+    setDataEntered({
+      ...dataEntered,
+      [event.target.name]: event.target.files[0],
+    });
   const handleSubmit = (event) => {
     event.preventDefault();
     handleClose();
@@ -44,24 +49,26 @@ const CreateCatgModal = () => {
         <Modal.Header closeButton>
           <Modal.Title>Add Category to List</Modal.Title>
         </Modal.Header>
-        <Form.Group className="mb-3">
-          <Form.Label>Category Name</Form.Label>
-          <Form.Control
-            onChange={handleChange}
-            name="name"
-            type="text"
-            placeholder="Enter Category Name"
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Category image</Form.Label>
-          <Form.Control
-            onChange={handleChange}
-            name="image"
-            type="text"
-            placeholder="Enter Category Image"
-          />
-        </Form.Group>
+        <Modal.Body>
+          <Form.Group className="mb-3">
+            <Form.Label>Category Name</Form.Label>
+            <Form.Control
+              onChange={handleChange}
+              name="name"
+              type="text"
+              placeholder="Enter Category Name"
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Category image</Form.Label>
+            <Form.Control
+              onChange={handleImage}
+              name="image"
+              type="file"
+              placeholder="Enter Category Image"
+            />
+          </Form.Group>
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close

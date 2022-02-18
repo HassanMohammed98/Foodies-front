@@ -1,7 +1,4 @@
 import { makeAutoObservable } from "mobx";
-import categories from "../Data/categories";
-import ingredients from "../Data/ingredients";
-import recipes from "../Data/recipes";
 import instance from "./instance";
 
 class Store {
@@ -13,11 +10,11 @@ class Store {
   }
   addCatg = async (catg) => {
     try {
-      // const formData = new FormData();
-      // for (const key in catg) {
-      //   formData.append(key, catg[key]);
-      // }
-      const response = await instance.post("/categories", catg);
+      const formData = new FormData();
+      for (const key in catg) {
+        formData.append(key, catg[key]);
+      }
+      const response = await instance.post("/categories", formData);
       this.catgList.push(response.data);
     } catch (error) {
       console.log("Store -> addCatg -> error", error);

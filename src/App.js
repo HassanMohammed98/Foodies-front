@@ -13,7 +13,7 @@ import RecipesDetail from "./components/Recipes/RecipesDetail";
 
 function App() {
   return (
-    <div>
+    <div className="whole-app">
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
