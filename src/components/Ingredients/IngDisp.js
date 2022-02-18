@@ -1,13 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import instance from "../../stores/instance";
 
 const IngDisp = ({ ingredient }) => {
   return (
     // <Link to={`/categories/${catg.slug}`}>
     <div className="list">
-      <img className="list-img" src={ingredient.image} alt="..."></img>
-      <div class="overlay">
-        <div class="text">{ingredient.name}</div>
+      <img
+        className="list-img"
+        src={`${instance.defaults.baseURL}${ingredient.image}`}
+        alt="..."
+      ></img>
+      <div className="overlay">
+        <div className="text">{ingredient.name}</div>
       </div>
     </div>
     // </Link>

@@ -5,9 +5,10 @@ import { observer } from "mobx-react";
 import CreateCatgModal from "../Modal/CreateCatgModal";
 
 const CategoryList = () => {
+  // store.fetchCatg();
   const categoriesDisplayed = store.catgList.map((catg) => (
     <div className="margin-list">
-      <CategoryDisp key={catg.id} catg={catg} />
+      <CategoryDisp key={catg._id} catg={catg} />
     </div>
   ));
   return (

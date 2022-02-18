@@ -6,23 +6,33 @@ import CreateRecipeModal from "../Modal/CreateRecipeModal";
 
 const Recipes = () => {
   const findRecipes = (catgRecipes) => {
-    return store.recipeList
-      .filter((rec) => catgRecipes.includes(rec.id))
-      .map((rec) => (
-        <div className="margin-list">
-          <RecipesDisp key={rec.id} recipe={rec} />
-        </div>
-      ));
+    // store.recipeList;
+    // .filter((rec) => catgRecipes.includes(rec._id))
+    return catgRecipes.map((rec) => (
+      <div className="margin-list">
+        <RecipesDisp key={rec._id} recipe={rec} />
+      </div>
+    ));
   };
 
   const allRecipes = store.catgList.map((catg) => (
-    <div>
+    <div className="recipe-div recipe-add">
       <h3>{catg.name}</h3>
       {findRecipes(catg.recipes)}
     </div>
   ));
-  // const recipesFound = store.recipeList.
-  return <div>{allRecipes}</div>;
+  return (
+    <div className="recipe-page">
+      <div className="recipe-list">
+        <div className="recipes">{allRecipes}</div>
+      </div>
+      <div className="recipe-list">
+        <div className="recipes recipe-add">
+          <CreateRecipeModal />
+        </div>
+      </div>
+    </div>
+  );
 };
 
-export default Recipes;
+export default observer(Recipes);

@@ -8,13 +8,11 @@ const CatgDetail = () => {
   const catg = store.catgList.find((category) => category.slug === slug);
   console.log(catg);
 
-  const foundRecipes = store.recipeList
-    .filter((rec) => catg.recipes.includes(rec.id))
-    .map((rec) => (
-      <div className="margin-list">
-        <RecipesDisp key={rec.id} recipe={rec} />
-      </div>
-    ));
+  const foundRecipes = catg.recipes.map((rec) => (
+    <div className="margin-list">
+      <RecipesDisp key={rec._id} recipe={rec} />
+    </div>
+  ));
   return <div>{foundRecipes}</div>;
 };
 
