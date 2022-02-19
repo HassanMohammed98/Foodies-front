@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
 import store from "../../stores/Store";
+import CreateRecipeSteps from "./CreateRecipeSteps";
 
 const CreateRecipeModal = () => {
   const catgs = store.catgList.map((category) => (
@@ -13,10 +14,15 @@ const CreateRecipeModal = () => {
       <span className="dropdown-item">{category.name}</span>
     </li>
   ));
+  //   const [recipeSteps, setRecipeSteps] = useState([]);
+  const [serviceList, setServiceList] = useState([{ service: "" }]);
+
   const [dataEntered, setDataEntered] = useState({
     name: "",
     duration: 0,
     image: "",
+    description: "",
+    steps: [{ service: "" }],
     category: "",
     ingredients: [],
   });
@@ -31,12 +37,36 @@ const CreateRecipeModal = () => {
       ...dataEntered,
       [event.target.name]: event.target.files[0],
     });
+
+  const handleServiceChange = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...serviceList];
+    list[index][name] = value;
+    setServiceList(list);
+  };
+
+  const handleServiceRemove = (index) => {
+    const list = [...serviceList];
+    list.splice(index, 1);
+    setServiceList(list);
+  };
+
+  const handleServiceAdd = () => {
+    setServiceList([...serviceList, { service: "" }]);
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
-    store.addRecipe(dataEntered);
+    console.log(serviceList);
+    // store.addRecipe(dataEntered);
+    setServiceList([{ service: "" }]);
     setDataEntered({
       name: "",
+      duration: 0,
       image: "",
+      description: "",
+      steps: [{ service: "" }],
+      category: "",
+      ingredients: [],
     });
   };
   return (
@@ -70,6 +100,26 @@ const CreateRecipeModal = () => {
             name="image"
             type="file"
             placeholder="Enter Recipe Image"
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Recipe Description</Form.Label>
+          <div className="recipe-description">
+            <Form.Control
+              onChange={handleChange}
+              name="description"
+              type="text"
+              placeholder="Enter Recipe Description"
+            />
+          </div>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <CreateRecipeSteps
+            serviceList={serviceList}
+            setServiceList={setServiceList}
+            handleServiceChange={handleServiceChange}
+            handleServiceRemove={handleServiceRemove}
+            handleServiceAdd={handleServiceAdd}
           />
         </Form.Group>
         <div className="test3">

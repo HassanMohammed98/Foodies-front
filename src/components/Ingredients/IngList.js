@@ -5,9 +5,12 @@ import { observer } from "mobx-react";
 import CreateIngredientsModal from "../Modal/CreateIngredientsModal";
 
 const IngList = () => {
+  // if (store.ingredientList == null) {
+  //   return <p>Loading...</p>;
+  // }
   const ingDisplayed = store.ingredientList.map((ing) => (
-    <div className="margin-list">
-      <IngDisp key={ing._id} ingredient={ing} />
+    <div key={ing._id} className="margin-list">
+      <IngDisp ingredient={ing} />
     </div>
   ));
   return (

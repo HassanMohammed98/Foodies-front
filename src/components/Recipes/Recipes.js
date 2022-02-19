@@ -5,12 +5,15 @@ import { observer } from "mobx-react";
 import CreateRecipeModal from "../Modal/CreateRecipeModal";
 
 const Recipes = () => {
+  // if (store.recipeList == null) {
+  //   return <p>Loading...</p>;
+  // }
   const findRecipes = (catgRecipes) => {
     // store.recipeList;
     // .filter((rec) => catgRecipes.includes(rec._id))
     return catgRecipes.map((rec) => (
-      <div className="margin-list">
-        <RecipesDisp key={rec._id} recipe={rec} />
+      <div key={rec._id} className="margin-list">
+        <RecipesDisp recipe={rec} />
       </div>
     ));
   };
