@@ -30,7 +30,9 @@ const CategoryList = () => {
     // </div>
     <div className="recipe-page">
       <div className="recipe-list">
-        <div className="recipes">{categoriesDisplayed}</div>
+        <div className="recipes">
+          <div className="item-display">{categoriesDisplayed}</div>
+        </div>
       </div>
       <div className="v-line"></div>
       <div className="recipe-list">
