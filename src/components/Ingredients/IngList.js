@@ -14,17 +14,30 @@ const IngList = () => {
     </div>
   ));
   return (
-    <div className="home">
-      <div className="headings">Ingredients</div>
-      <div
-        className={
-          store.ingredientList.length > 7
-            ? "whole-list padding-list-top"
-            : "whole-list"
-        }
-      >
-        {ingDisplayed}
-        <CreateIngredientsModal />
+    // <div className="home">
+    //   <div className="headings">Ingredients</div>
+    //   <div
+    //     className={
+    //       store.ingredientList.length > 7
+    //         ? "whole-list padding-list-top"
+    //         : "whole-list"
+    //     }
+    //   >
+    //     {ingDisplayed}
+    //     <CreateIngredientsModal />
+    //   </div>
+    // </div>
+    <div className="recipe-page">
+      <div className="recipe-list">
+        <div className="recipes">
+          <div className="item-display">{ingDisplayed}</div>
+        </div>
+      </div>
+      <div className="v-line"></div>
+      <div className="recipe-list">
+        <div className="recipes recipe-add">
+          <CreateIngredientsModal />
+        </div>
       </div>
     </div>
   );

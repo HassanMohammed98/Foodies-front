@@ -9,8 +9,8 @@ const CreateIngredientsModal = () => {
     name: "",
     image: "",
   });
-  const handleClose = () => setIsOpen(false);
-  const handleShow = () => setIsOpen(true);
+  // const handleClose = () => setIsOpen(false);
+  // const handleShow = () => setIsOpen(true);
   const handleChange = (event) => {
     setDataEntered({ ...dataEntered, [event.target.name]: event.target.value });
   };
@@ -21,7 +21,7 @@ const CreateIngredientsModal = () => {
     });
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleClose();
+    // handleClose();
     store.addIng(dataEntered);
     setDataEntered({
       name: "",
@@ -29,26 +29,20 @@ const CreateIngredientsModal = () => {
     });
   };
   return (
-    <>
-      <div
-        className={
-          store.catgList.length > 0 ? "list add-item-after" : "add-item"
-        }
-        onClick={handleShow}
-      >
-        <img
+    <div className="recipe-modal">
+      {/* <img
           className="add-item-img"
           src="./images/add-item.png"
           alt="..."
         ></img>
         {store.catgList.length == 0 && <>No Ingredients found</>}
-        <h5>click to add a new Ingredient</h5>
-      </div>
+        <h5>click to add a new Ingredient</h5> */}
 
-      <Modal show={isOpen} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add Ingredient to List</Modal.Title>
-        </Modal.Header>
+      {/* <Modal show={isOpen} onHide={handleClose}> */}
+      <Modal.Header>
+        <Modal.Title>Add Ingredient to List</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
         <Form.Group className="mb-3">
           <Form.Label>Ingredient Name</Form.Label>
           <Form.Control
@@ -67,16 +61,14 @@ const CreateIngredientsModal = () => {
             placeholder="Enter Ingredient Image"
           />
         </Form.Group>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleSubmit}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="primary" type="submit" onClick={handleSubmit}>
+          Save Changes
+        </Button>
+      </Modal.Footer>
+      {/* </Modal> */}
+    </div>
   );
 };
 
