@@ -1,0 +1,101 @@
+nav {
+  top: 0;
+  overflow: hidden;
+  width: 100%;
+  background-color: #f5f4ef;
+  position: relative;
+}
+.nav-class {
+  height: 10%;
+}
+.logo {
+  position: absolute;
+  left: 10px;
+  top: 7px;
+  z-index: 1;
+  height: 80%;
+}
+.fav {
+  height: 80%;
+  position: absolute;
+  right: 10%;
+  top: 10%;
+}
+.favItem {
+  margin-right: 90px;
+  height: 100%;
+  position: relative;
+}
+.navlist {
+  list-style-type: none;
+  height: 100%;
+  background-color: #f5f4ef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.navLink {
+  text-decoration: none;
+  color: #14312a;
+}
+.navitems {
+  text-decoration: none;
+  margin-right: 10%;
+  font-size: 28px;
+  text-transform: uppercase;
+  color: #14312a;
+  font-family: acumin-pro-extra-condensed, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  position: relative;
+  left: 5%;
+}
+.navbtn {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 7px;
+  padding: 5px;
+  color: #14312a;
+  font-size: 18px;
+}
+@media screen and (max-width: 500px) {
+  .navlist {
+    flex-direction: column;
+    height: auto;
+  }
+  .navitems:nth-child(1) {
+    margin-top: 50px;
+  }
+  .navitems {
+    width: 100%;
+    text-align: center;
+    margin-right: 0px;
+    padding: 20px 0;
+  }
+  .navbtn {
+    display: block;
+  }
+}
+.divMenu {
+  position: relative;
+  display: inline-block;
+}
+.dropDownMenu {
+  display: none;
+  position: absolute;
+  background-color: #14312a;
+  min-width: 200px;
+  z-index: 1;
+}
+.dropDownMenu a:hover {
+  background-color: aqua;
+  color: blue;
+}
+.divMenu:hover .dropDownMenu {
+  display: block;
+}
+.divMenu:hover .insideMenu {
+  background-color: aquamarine;
+}
