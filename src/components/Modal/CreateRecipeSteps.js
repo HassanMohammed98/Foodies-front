@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Form, Button, Modal } from "react-bootstrap";
+import React from "react";
+// import { Form, Button, Modal } from "react-bootstrap";
 
 const CreateRecipeSteps = ({
   serviceList,
@@ -8,26 +8,6 @@ const CreateRecipeSteps = ({
   handleServiceRemove,
   handleServiceAdd,
 }) => {
-  //   const [recipeSteps, setRecipeSteps] = useState([]);
-  //   const [serviceList, setServiceList] = useState([{ service: "" }]);
-
-  //   const handleServiceChange = (e, index) => {
-  //     const { name, value } = e.target;
-  //     const list = [...serviceList];
-  //     list[index][name] = value;
-  //     setServiceList(list);
-  //   };
-
-  //   const handleServiceRemove = (index) => {
-  //     const list = [...serviceList];
-  //     list.splice(index, 1);
-  //     setServiceList(list);
-  //   };
-
-  //   const handleServiceAdd = () => {
-  //     setServiceList([...serviceList, { service: "" }]);
-  //   };
-
   return (
     <form autoComplete="off">
       <div className="form-field">

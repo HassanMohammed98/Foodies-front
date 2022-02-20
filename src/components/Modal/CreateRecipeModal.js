@@ -2,30 +2,45 @@ import React, { useState } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
 import store from "../../stores/Store";
 import CreateRecipeSteps from "./CreateRecipeSteps";
+import { observer } from "mobx-react";
+import IngDisp from "../Ingredients/IngDisp";
 
 const CreateRecipeModal = () => {
   const catgs = store.catgList.map((category) => (
     <li
       key={category._id}
-      //   onClick={() => {
-      //     libraryStore.borrowBook(member.id, book.id);
-      //   }}
+      onClick={() => {
+        setDataEntered({
+          ...dataEntered,
+          category: category._id,
+        });
+        //   libraryStore.borrowBook(member.id, book.id);
+      }}
     >
       <span className="dropdown-item">{category.name}</span>
     </li>
   ));
   //   const [recipeSteps, setRecipeSteps] = useState([]);
   const [serviceList, setServiceList] = useState([{ service: "" }]);
-
+  const [addIng, setAddIng] = useState([]);
   const [dataEntered, setDataEntered] = useState({
     name: "",
     duration: 0,
     image: "",
     description: "",
-    steps: [{ service: "" }],
+    steps: [],
     category: "",
-    ingredients: [],
   });
+  const ingrediants = store.ingredientList.map((ing) => (
+    <div
+      key={`whole_${ing._id}`}
+      className="margin-list"
+      onClick={() => handleIngredChange(ing)}
+    >
+      <IngDisp ingredient={ing} />
+    </div>
+  ));
+
   const handleChange = (event) => {
     setDataEntered({
       ...dataEntered,
@@ -37,37 +52,67 @@ const CreateRecipeModal = () => {
       ...dataEntered,
       [event.target.name]: event.target.files[0],
     });
+  const handleStep = () =>
+    setDataEntered({
+      ...dataEntered,
+      steps: serviceList,
+    });
 
+  const handleIngredChange = (ing) => {
+    if (addIng.some((ingred) => ingred._id === ing._id)) {
+      // const index = addIng.findIndex((ingred) => ingred.ing === ing);
+      setAddIng((oldlist) =>
+        oldlist.filter((ingred) => ingred._id !== ing._id)
+      );
+    } else {
+      setAddIng([...addIng, { _id: ing._id, ing: ing }]);
+    }
+  };
   const handleServiceChange = (e, index) => {
     const { name, value } = e.target;
     const list = [...serviceList];
     list[index][name] = value;
     setServiceList(list);
+    handleStep();
   };
 
   const handleServiceRemove = (index) => {
     const list = [...serviceList];
     list.splice(index, 1);
     setServiceList(list);
+    handleStep();
   };
 
   const handleServiceAdd = () => {
     setServiceList([...serviceList, { service: "" }]);
+    handleStep();
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(serviceList);
-    // store.addRecipe(dataEntered);
-    setServiceList([{ service: "" }]);
-    setDataEntered({
-      name: "",
-      duration: 0,
-      image: "",
-      description: "",
-      steps: [{ service: "" }],
-      category: "",
-      ingredients: [],
-    });
+    console.log(dataEntered);
+    if (
+      dataEntered.name !== "" &&
+      dataEntered.category !== "" &&
+      dataEntered.image !== ""
+    ) {
+      store.addRecipe({ ...dataEntered, ingredients: addIng });
+      setServiceList([{ service: "" }]);
+      setDataEntered({
+        name: "",
+        duration: 0,
+        image: "",
+        description: "",
+        steps: [{ service: "" }],
+        category: "",
+      });
+      setAddIng([]);
+    } else {
+      alert(
+        `Hey, you missed:\n${dataEntered.name === "" && "   Name field\n"}${
+          dataEntered.name === "" && "   Image field\n"
+        }${dataEntered.category === "" && "   Category field\n"}in modal!`
+      );
+    }
   };
   return (
     <div className="recipe-modal">
@@ -82,6 +127,7 @@ const CreateRecipeModal = () => {
             name="name"
             type="text"
             placeholder="Enter Recipe Name"
+            required={true}
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -89,7 +135,7 @@ const CreateRecipeModal = () => {
           <Form.Control
             onChange={handleChange}
             name="duration"
-            type="text"
+            type="number"
             placeholder="Enter Recipe cooking Duration"
           />
         </Form.Group>
@@ -100,6 +146,7 @@ const CreateRecipeModal = () => {
             name="image"
             type="file"
             placeholder="Enter Recipe Image"
+            required={true}
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -140,11 +187,29 @@ const CreateRecipeModal = () => {
           </div>
           <div className="recipe-add-divider"></div>
           <h6>Add Recipe Ingredients to list</h6>
-          <div className="recipe-ingred"></div>
+          <div className="recipe-ingred">
+            <div className="recipe-test">
+              <p>Added List</p>
+              {addIng.map((ing) => (
+                <div
+                  key={`new_${ing._id}`}
+                  className="margin-list"
+                  onClick={() => handleIngredChange(ing)}
+                >
+                  <IngDisp ingredient={ing.ing} />
+                </div>
+              ))}
+            </div>
+            <div className="v-line"></div>
+            <div className="recipe-test">
+              <p>Whole List</p>
+              {ingrediants}
+            </div>
+          </div>
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="primary" onClick={handleSubmit}>
+        <Button variant="primary" type="submit" onClick={handleSubmit}>
           Save Changes
         </Button>
       </Modal.Footer>
@@ -153,4 +218,4 @@ const CreateRecipeModal = () => {
   );
 };
 
-export default CreateRecipeModal;
+export default observer(CreateRecipeModal);

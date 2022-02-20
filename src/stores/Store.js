@@ -30,11 +30,19 @@ class Store {
   };
   addRecipe = async (recipe) => {
     try {
-      // const formData = new FormData();
-      // for (const key in catg) {
-      //   formData.append(key, catg[key]);
-      // }
-      const response = await instance.post("/recipes", recipe);
+      let temp = recipe.steps.map((step) => step.service);
+      temp = temp.join("\n");
+      recipe.steps = temp;
+      let tempTwo = recipe.ingredients.map((ingred) => ingred._id);
+      recipe.ingredients = tempTwo;
+      const formData = new FormData();
+      for (const key in recipe) {
+        formData.append(key, recipe[key]);
+      }
+      const response = await instance.post(
+        `/categories/${recipe.category}/recipe`,
+        formData
+      );
       this.recipeList.push(response.data);
     } catch (error) {
       console.log("Store -> addRecipe -> error", error);
@@ -50,11 +58,11 @@ class Store {
   };
   addIng = async (ingredient) => {
     try {
-      // const formData = new FormData();
-      // for (const key in catg) {
-      //   formData.append(key, catg[key]);
-      // }
-      const response = await instance.post("/ingrediants", ingredient);
+      const formData = new FormData();
+      for (const key in ingredient) {
+        formData.append(key, ingredient[key]);
+      }
+      const response = await instance.post("/ingrediants", formData);
       this.ingredientList.push(response.data);
     } catch (error) {
       console.log("Store -> addIngredient -> error", error);

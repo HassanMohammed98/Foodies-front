@@ -14,6 +14,11 @@ const CreateIngredientsModal = () => {
   const handleChange = (event) => {
     setDataEntered({ ...dataEntered, [event.target.name]: event.target.value });
   };
+  const handleImage = (event) =>
+    setDataEntered({
+      ...dataEntered,
+      [event.target.name]: event.target.files[0],
+    });
   const handleSubmit = (event) => {
     event.preventDefault();
     handleClose();
@@ -56,9 +61,9 @@ const CreateIngredientsModal = () => {
         <Form.Group className="mb-3">
           <Form.Label>Ingredient Image</Form.Label>
           <Form.Control
-            onChange={handleChange}
+            onChange={handleImage}
             name="image"
-            type="text"
+            type="file"
             placeholder="Enter Ingredient Image"
           />
         </Form.Group>

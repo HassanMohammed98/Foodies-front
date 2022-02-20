@@ -11,11 +11,15 @@ const Recipes = () => {
   const findRecipes = (catgRecipes) => {
     // store.recipeList;
     // .filter((rec) => catgRecipes.includes(rec._id))
-    return catgRecipes.map((rec) => (
-      <div key={rec._id} className="margin-list">
-        <RecipesDisp recipe={rec} />
+    return (
+      <div className="item-display">
+        {catgRecipes.map((rec) => (
+          <div key={rec._id} className="margin-list">
+            <RecipesDisp recipe={rec} />
+          </div>
+        ))}
       </div>
-    ));
+    );
   };
 
   const allRecipes = store.catgList.map((catg) => (
@@ -29,6 +33,7 @@ const Recipes = () => {
       <div className="recipe-list">
         <div className="recipes">{allRecipes}</div>
       </div>
+      <div className="v-line"></div>
       <div className="recipe-list">
         <div className="recipes recipe-add">
           <CreateRecipeModal />
