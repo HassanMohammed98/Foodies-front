@@ -10,11 +10,12 @@ import IngList from "./components/Ingredients/IngList";
 import Favorites from "./components/Favorites";
 import WishList from "./components/WishList";
 import RecipesDetail from "./components/Recipes/RecipesDetail";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
     <div className="whole-app">
-      <Nav />
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/categories" element={<CategoryList />} />
