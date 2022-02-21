@@ -3,6 +3,7 @@ import store from "../../stores/Store";
 import RecipesDisp from "./RecipesDisp";
 import { observer } from "mobx-react";
 import CreateRecipeModal from "../Modal/CreateRecipeModal";
+import RecipesCard from "./ResipesCard";
 
 const Recipes = () => {
   // if (store.recipeList == null) {
@@ -13,7 +14,7 @@ const Recipes = () => {
       <div className="item-display">
         {catgRecipes.map((rec) => (
           <div key={rec._id} className="margin-list">
-            <RecipesDisp recipe={rec} />
+            <RecipesCard recipe={rec} />
           </div>
         ))}
       </div>
