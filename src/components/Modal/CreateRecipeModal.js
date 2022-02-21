@@ -113,6 +113,7 @@ const CreateRecipeModal = () => {
         }${dataEntered.category === "" && "   Category field\n"}in modal!`
       );
     }
+    store.fetchCatg();
   };
   return (
     <div className="recipe-modal">

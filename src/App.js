@@ -11,6 +11,7 @@ import Favorites from "./components/Favorites";
 import WishList from "./components/WishList";
 import RecipesDetail from "./components/Recipes/RecipesDetail";
 import Navbar from "./components/Navbar/Navbar";
+import About from "./components/About";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/categories" element={<CategoryList />} />
         <Route path="/categories/:slug" element={<CatgDetail />} />
         <Route path="/recipes" element={<Recipes />} />
