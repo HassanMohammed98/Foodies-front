@@ -9,8 +9,6 @@ const Recipes = () => {
   //   return <p>Loading...</p>;
   // }
   const findRecipes = (catgRecipes) => {
-    // store.recipeList;
-    // .filter((rec) => catgRecipes.includes(rec._id))
     return (
       <div className="item-display">
         {catgRecipes.map((rec) => (
