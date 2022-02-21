@@ -340,6 +340,11 @@ hr {
   align-self: center;
 }
 
+.fav-display {
+  display: flex;
+  flex-direction: column;
+}
+
 .home {
   height: 92.5%;
   width: 100%;
