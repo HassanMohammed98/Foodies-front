@@ -4,9 +4,13 @@ import instance from "../../stores/instance";
 import durationSvg from "../../duration.svg";
 
 const RecipesCard = ({ recipe, catgName }) => {
+  const temp = recipe.duration;
+  if (temp === 0) {
+    temp = "Not available";
+  }
   return (
     <div className="recipeCard">
-      <Link to={`/recipes/${recipe.slug}`}>
+      <Link className="link-card" to={`/recipes/${recipe.slug}`}>
         <div className="recipeCard">
           <div className="recipe-card-image-div">
             <img
@@ -17,12 +21,16 @@ const RecipesCard = ({ recipe, catgName }) => {
           </div>
           <div>
             <div className="recipe-name-div">
-              <div className="recipe-cat">{catgName}</div>
+              <div className="recipe-category-name">{catgName}</div>
               <div className="recipe-name">{recipe.name}</div>
             </div>
             <div className="durationSVG-div">
               <img className="durationSVG-img" src={durationSvg} />
-              <div className="durationSVG-mins">23 mins</div>
+              <div className="durationSVG-mins">
+                {recipe.duration > 0
+                  ? `${recipe.duration} mins`
+                  : "Not available"}
+              </div>
             </div>
           </div>
 
@@ -39,7 +47,7 @@ const RecipesCard = ({ recipe, catgName }) => {
         </div>
       </Link>
       <div className="heart-div">
-        <div class="heart"></div>
+        <div className="heart"></div>
       </div>
     </div>
   );

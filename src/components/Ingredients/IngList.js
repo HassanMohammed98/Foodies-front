@@ -3,6 +3,7 @@ import store from "../../stores/Store";
 import IngDisp from "./IngDisp";
 import { observer } from "mobx-react";
 import CreateIngredientsModal from "../Modal/CreateIngredientsModal";
+import IngrediantCard from "./IngrediantCard";
 
 const IngList = () => {
   // if (store.ingredientList == null) {
@@ -10,7 +11,7 @@ const IngList = () => {
   // }
   const ingDisplayed = store.ingredientList.map((ing) => (
     <div key={ing._id} className="margin-list">
-      <IngDisp ingredient={ing} />
+      <IngrediantCard ingredient={ing} />
     </div>
   ));
   return (

@@ -1,8 +1,8 @@
 import React from "react";
 import store from "../../stores/Store";
-import CategoryDisp from "./CategoryDisp";
 import { observer } from "mobx-react";
 import CreateCatgModal from "../Modal/CreateCatgModal";
+import CategoryCard from "./CategoryCard";
 
 const CategoryList = () => {
   // if (store.catgList == null) {
@@ -11,7 +11,7 @@ const CategoryList = () => {
   // store.fetchCatg();
   const categoriesDisplayed = store.catgList.map((catg) => (
     <div key={catg._id} className="margin-list">
-      <CategoryDisp catg={catg} />
+      <CategoryCard catg={catg} />
     </div>
   ));
   return (

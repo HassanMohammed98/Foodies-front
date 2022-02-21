@@ -471,7 +471,7 @@ hr {
 }
 .recipe-name {
   position: absolute;
-  bottom: 20%;
+  bottom: 18%;
   left: 3%;
   text-decoration: none;
   color: #14312a;
@@ -491,10 +491,20 @@ hr {
   width: 100%;
   height: 60%;
 }
+.categrory-card-image-div {
+  width: 100%;
+  height: 75%;
+}
 .recipeCard {
   position: relative;
   width: 15em;
   height: 20em;
+  background-color: #f5f4ef;
+}
+.categoryCard {
+  position: relative;
+  width: 15em;
+  height: 16em;
   background-color: #f5f4ef;
 }
 .durationSVG-img {
@@ -518,6 +528,31 @@ hr {
   color: #6e8681;
 }
 
+.heart-category-div {
+  position: absolute;
+  display: flex;
+  right: 12%;
+  bottom: 11%;
+}
+
+.heart-category {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: url(https://cssanimation.rocks/images/posts/steps/heart.png)
+    no-repeat;
+  background-position: 0 0;
+  cursor: pointer;
+  animation: fave-heart 1s steps(28);
+}
+
+.heart-category :hover {
+  background-position: -2800px 0;
+  transition: background 1s steps(28);
+}
 .heart {
   width: 100px;
   height: 100px;
@@ -549,7 +584,35 @@ hr {
   right: 12%;
   bottom: 7%;
 }
-.recipe-name {
+
+.recipe-category-name {
   text-decoration: none;
-  color: #282c34;
+  position: absolute;
+  bottom: 31%;
+  left: 3%;
+  filter: invert(66%) sepia(72%) saturate(1052%) hue-rotate(321deg)
+    brightness(89%) contrast(78%);
+  font-size: 20px;
+  font-family: acumin-pro-extra-condensed, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+.link-card {
+  text-decoration: none;
+}
+.category-name {
+  position: relative;
+  filter: invert(66%) sepia(72%) saturate(1052%) hue-rotate(321deg)
+    brightness(89%) contrast(78%);
+  font-size: 30px;
+  font-family: acumin-pro-extra-condensed, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+.category-name-div {
+  width: 100%;
+  position: relative;
+  margin-top: 3%;
+  justify-content: center;
+  display: flex;
 }
