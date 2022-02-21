@@ -5,6 +5,9 @@ class Store {
   catgList = [];
   recipeList = [];
   ingredientList = [];
+  catgFav = [];
+  recipeFav = [];
+  ingredientFav = [];
   constructor() {
     makeAutoObservable(this);
   }
@@ -26,6 +29,14 @@ class Store {
       this.catgList = response.data;
     } catch (error) {
       console.log("Store -> fetchCatg -> error", error);
+    }
+  };
+  fetchCatgFav = async () => {
+    try {
+      const response = await instance.get("/favorites/category");
+      this.catgFav = response.data;
+    } catch (error) {
+      console.log("Store -> fetchCatgFav -> error", error);
     }
   };
   addRecipe = async (recipe) => {
@@ -51,9 +62,17 @@ class Store {
   fetchRecipe = async () => {
     try {
       const response = await instance.get("/recipes");
-      this.recipeList = response.data;
+      this.recipeFav = response.data;
     } catch (error) {
       console.log("Store -> fetchRecipe -> error", error);
+    }
+  };
+  fetchRecipeFav = async () => {
+    try {
+      const response = await instance.get("/favorites/recipe");
+      this.catgList = response.data;
+    } catch (error) {
+      console.log("Store -> fetchRecipeFav -> error", error);
     }
   };
   addIng = async (ingredient) => {
@@ -76,10 +95,21 @@ class Store {
       console.log("Store -> fetchIngredient -> error", error);
     }
   };
+  fetchIngFav = async () => {
+    try {
+      const response = await instance.get("/favorites/ingredient");
+      this.ingredientFav = response.data;
+    } catch (error) {
+      console.log("Store -> fetchRecipeFav -> error", error);
+    }
+  };
 }
 
 const store = new Store();
 store.fetchCatg();
 store.fetchIng();
 store.fetchRecipe();
+store.fetchCatgFav();
+store.fetchRecipeFav();
+store.fetchIngFav();
 export default store;
