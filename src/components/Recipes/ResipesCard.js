@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import instance from "../../stores/instance";
 import durationSvg from "../../duration.svg";
 
-const RecipesCard = ({ recipe }) => {
+const RecipesCard = ({ recipe, catgName }) => {
   return (
     <div className="recipeCard">
       <Link to={`/recipes/${recipe.slug}`}>
@@ -17,6 +17,7 @@ const RecipesCard = ({ recipe }) => {
           </div>
           <div>
             <div className="recipe-name-div">
+              <div className="recipe-cat">{catgName}</div>
               <div className="recipe-name">{recipe.name}</div>
             </div>
             <div className="durationSVG-div">

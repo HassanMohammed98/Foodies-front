@@ -9,12 +9,12 @@ const Recipes = () => {
   // if (store.recipeList == null) {
   //   return <p>Loading...</p>;
   // }
-  const findRecipes = (catgRecipes) => {
+  const findRecipes = (catgRecipes, catgName) => {
     return (
       <div className="item-display">
         {catgRecipes.map((rec) => (
           <div key={rec._id} className="margin-list">
-            <RecipesCard recipe={rec} />
+            <RecipesCard recipe={rec} catgName={catgName} />
           </div>
         ))}
       </div>
@@ -24,7 +24,7 @@ const Recipes = () => {
   const allRecipes = store.catgList.map((catg) => (
     <div className="recipe-div recipe-add">
       <h3>{catg.name}</h3>
-      {findRecipes(catg.recipes)}
+      {findRecipes(catg.recipes, catg.name)}
     </div>
   ));
   return (
