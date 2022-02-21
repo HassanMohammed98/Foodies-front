@@ -14,6 +14,7 @@ const Recipes = () => {
       <div className="item-display">
         {catgRecipes.map((rec) => (
           <div key={rec._id} className="margin-list">
+            {console.log(rec.duration)}
             <RecipesCard recipe={rec} catgName={catgName} />
           </div>
         ))}
@@ -22,7 +23,7 @@ const Recipes = () => {
   };
 
   const allRecipes = store.catgList.map((catg) => (
-    <div className="recipe-div recipe-add">
+    <div key={catg._id} className="recipe-div recipe-add">
       <h3>{catg.name}</h3>
       {findRecipes(catg.recipes, catg.name)}
     </div>

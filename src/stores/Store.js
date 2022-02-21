@@ -54,7 +54,11 @@ class Store {
         `/categories/${recipe.category}/recipe`,
         formData
       );
+
       this.recipeList.push(response.data);
+      console.log(this.catgList);
+
+      this.catgList.recipes.push(response.data);
     } catch (error) {
       console.log("Store -> addRecipe -> error", error);
     }
